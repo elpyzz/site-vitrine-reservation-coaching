@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Louis Pereira — Crée ton app sans coder | Coaching IA & Cursor</title>
+  <meta name="description" content="Coaching pour créer une vraie application SaaS sans savoir coder. Avec Cursor et l'IA, de l'idée au premier client payant. Réserve ton appel gratuit sur WhatsApp.">
+  <meta property="og:title" content="Louis Pereira — Crée ton app sans coder">
+  <meta property="og:description" content="Coaching pour créer une vraie application SaaS sans savoir coder. Réserve ton appel gratuit.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #050810;
+      --navy: #080e1c;
+      --card: #0d1526;
+      --amber: #F5A623;
+      --amber-light: #FFB84A;
+      --amber-dim: rgba(245, 166, 35, 0.10);
+      --amber-border: rgba(245, 166, 35, 0.25);
+      --blue: #2563EB;
+      --green: #10B981;
+      --red: #EF4444;
+      --text: #F0F4FF;
+      --muted: #6B7FA3;
+      --border: rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(245, 166, 35, 0.04) 0%, transparent 50%),
+                  radial-gradient(ellipse 60% 40% at 80% 90%, rgba(37, 99, 235, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; }
+
+    /* ——— Barre urgence ——— */
+    .urgency-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--amber);
+      color: var(--black);
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      text-align: center;
+      padding: 10px 16px;
+      z-index: 100;
+    }
+    .urgency-bar a {
+      color: var(--black);
+      text-decoration: none;
+    }
+    .urgency-bar a:hover { text-decoration: underline; }
+
+    /* ——— Nav ——— */
+    .nav-wrap { padding-top: 44px; }
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(5, 8, 16, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      background: var(--amber);
+      color: var(--black);
+      padding: 10px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
+    }
+
+    /* ——— Bouton CTA global ——— */
+    .btn-cta {
+      background: linear-gradient(90deg, var(--amber) 0%, var(--amber-light) 40%, #FFD080 50%, var(--amber-light) 60%, var(--amber) 100%);
+      background-size: 200% auto;
+      color: var(--black);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(245, 166, 35, 0.35);
+      animation: shimmer 2s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .btn-cta .wa-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+      text-align: left;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber-dim);
+      border: 1px solid var(--amber-border);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--amber-light);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(38px, 10vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    .hero h1 .amber { color: var(--amber); }
+    .hero-sub {
+      font-weight: 300;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+    .hero-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .hero-cta {
+      padding: 18px 40px;
+      font-size: 16px;
+    }
+    .hero-cta-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .hero-stack {
+      margin-top: 72px;
+      text-align: center;
+    }
+    .hero-stack-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .hero-stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .stack-pill {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ——— Stats ——— */
+    .stats {
+      background: var(--navy);
+      padding: 80px 24px;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      padding: 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 72px);
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ——— Mon histoire ——— */
+    .story {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .story-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber-dim);
+      border: 1px solid var(--amber-border);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--amber-light);
+      margin-bottom: 20px;
+    }
+    .story h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 40px);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    .story p {
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .story-sign {
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+    .story-card {
+      background: rgba(245, 166, 35, 0.05);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 20px;
+      padding: 28px;
+    }
+    .story-card li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .story-card li:last-child { border-bottom: none; }
+    .story-card .check {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      color: var(--green);
+    }
+
+    /* ——— Modules ——— */
+    .modules {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 24px;
+    }
+    .modules h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 5vw, 48px);
+      text-align: center;
+      margin-bottom: 56px;
+      line-height: 1.15;
+    }
+    .modules h2 .amber { color: var(--amber); }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .module-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .module-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 166, 35, 0.3);
+    }
+    .module-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--amber-dim);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    .module-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+    .module-card p {
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ——— Pour qui ——— */
+    .pour-qui {
+      background: var(--navy);
+      padding: 120px 24px;
+    }
+    .pour-qui-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .pour-qui h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .pour-qui-col {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+    .pour-qui-col.green { border-left: 3px solid var(--green); background: rgba(16, 185, 129, 0.04); }
+    .pour-qui-col.red { border-left: 3px solid var(--red); background: rgba(239, 68, 68, 0.04); }
+    .pour-qui-col ul { list-style: none; }
+    .pour-qui-col li {
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-weight: 400;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .pour-qui-col.green li:hover { background: rgba(16, 185, 129, 0.06); }
+    .pour-qui-col.red li:hover { background: rgba(239, 68, 68, 0.06); }
+
+    /* ——— Ce que tu reçois (timeline) ——— */
+    .timeline-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 24px;
+    }
+    .timeline-wrap h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 40px);
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 80px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 21px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(245, 166, 35, 0.3);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-num {
+      position: absolute;
+      left: -80px;
+      top: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--amber);
+      color: var(--black);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 28px;
+    }
+    .timeline-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .timeline-card p {
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ——— FAQ ——— */
+    .faq-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 24px;
+    }
+    .faq-wrap h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 40px);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .faq-list {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: background 0.2s ease;
+    }
+    .faq-q:hover { background: rgba(255,255,255,0.02); }
+    .faq-item.open .faq-q {
+      background: rgba(245, 166, 35, 0.04);
+      border-left: 3px solid var(--amber);
+      padding-left: 21px;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--amber);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a-wrap {
+      overflow: hidden;
+      transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-a {
+      padding: 0 24px 20px;
+      padding-left: 24px;
+    }
+    .faq-item.open .faq-a { padding-left: 24px; }
+    .faq-a p {
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ——— CTA final ——— */
+    .cta-final {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(245, 166, 35, 0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse 60% 40% at 50% 80%, rgba(37, 99, 235, 0.04) 0%, transparent 50%);
+    }
+    .cta-final-badge {
+      display: inline-flex;
+      background: var(--amber-dim);
+      border: 1px solid var(--amber-border);
+      border-radius: 999px;
+      padding: 8px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--amber-light);
+      margin-bottom: 28px;
+    }
+    .cta-final h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-final-sub {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .cta-final .btn-cta {
+      padding: 22px 52px;
+      font-size: 18px;
+      animation: pulse-btn 2s ease-in-out infinite;
+    }
+    @keyframes pulse-btn {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .cta-final .btn-cta:hover { animation: none; }
+    .cta-final-trust {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ——— Footer ——— */
+    .footer {
+      background: #030508;
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-left {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .footer-left span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .footer-center {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-center a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .footer-center a:hover { color: var(--amber); }
+    .footer-right {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ——— Reveal ——— */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ——— Responsive ——— */
+    @media (max-width: 900px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+      .story { grid-template-columns: 1fr; }
+      .story .story-card { order: -1; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .pour-qui-inner { grid-template-columns: 1fr; }
+      .timeline { padding-left: 70px; }
+      .timeline::before { left: 16px; }
+      .timeline-num { left: -70px; width: 36px; height: 36px; font-size: 16px; }
+    }
+    @media (max-width: 600px) {
+      .nav-wrap { padding-top: 42px; }
+      .hero { padding: 60px 20px 80px; }
+      .hero h1 { font-size: clamp(38px, 10vw, 56px); }
+      .stats, .story, .modules, .pour-qui, .timeline-wrap, .faq-wrap {
+        padding: 60px 20px;
+      }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .cta-final .btn-cta { padding: 18px 32px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- 0. Barre urgence -->
+    <a href="https://wa.me/33769430343?text=Bonjour%20Louis%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20ton%20coaching%20pour%20cr%C3%A9er%20mon%20app%20sans%20coder.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="urgency-bar">
+      ⚡ Places limitées — 5 accompagnements disponibles ce mois-ci · Réserver maintenant →
+    </a>
+
+    <!-- 1. Nav -->
+    <div class="nav-wrap">
+      <nav class="nav">
+        <span class="nav-logo">Louis Pereira</span>
+        <a href="https://wa.me/33769430343?text=Bonjour%20Louis%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20ton%20coaching%20pour%20cr%C3%A9er%20mon%20app%20sans%20coder.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="nav-cta">Réserver mon appel →</a>
+      </nav>
+    </div>
+
+    <!-- 2. Hero -->
+    <section class="hero">
+      <div class="reveal">
+        <span class="hero-badge">🚀 Coaching — Créer son App avec l'IA</span>
+        <h1>J'ai créé une vraie<br>application SaaS<br><span class="amber">sans savoir coder.</span></h1>
+        <p class="hero-sub">En quelques semaines, avec Cursor et l'IA, j'ai construit un logiciel utilisé par de vrais artisans. Je t'apprends exactement comment faire — de l'idée au premier client payant.</p>
+        <div class="hero-cta-wrap">
+          <a href="https://wa.me/33769430343?text=Bonjour%20Louis%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20ton%20coaching%20pour%20cr%C3%A9er%20mon%20app%20sans%20coder.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="btn-cta hero-cta">
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Réserver mon appel gratuit — WhatsApp
+          </a>
+          <p class="hero-cta-sub">Réponse en moins de 24h</p>
+          <p class="hero-trust">✓ Gratuit · ✓ Sans engagement · ✓ Réponse rapide</p>
+        </div>
+      </div>
+      <div class="hero-stack reveal">
+        <p class="hero-stack-label">Stack utilisé dans le coaching</p>
+        <div class="hero-stack-pills">
+          <span class="stack-pill">Cursor</span>
+          <span class="stack-pill">GitHub</span>
+          <span class="stack-pill">Vercel</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">Resend</span>
+          <span class="stack-pill">Stripe</span>
+          <span class="stack-pill">Claude AI</span>
+          <span class="stack-pill">ChatGPT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Stats -->
+    <section class="stats">
+      <div class="stats-inner reveal">
+        <div class="stat-item">
+          <div class="stat-num">0€</div>
+          <div class="stat-label">investis en coaching</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Quelques</div>
+          <div class="stat-label">semaines pour lancer</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1 app</div>
+          <div class="stat-label">en prod réelle</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">en ligne sans serveur</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Mon histoire -->
+    <section class="story">
+      <div class="reveal">
+        <span class="story-badge">👤 MON HISTOIRE</span>
+        <h2>J'étais à ta place il y a quelques mois.</h2>
+        <p>Je n'étais pas développeur. Je n'avais pas de budget pour embaucher quelqu'un. Mais j'avais une idée et une obsession : la concrétiser.</p>
+        <p>Alors j'ai appris à utiliser Cursor — un éditeur de code assisté par IA — et en quelques semaines j'avais une vraie application fonctionnelle, déployée, avec de vrais utilisateurs.</p>
+        <p>Aujourd'hui je te partage exactement ce que j'ai appris : les outils, les méthodes, les erreurs à éviter et les raccourcis qui changent tout.</p>
+        <p class="story-sign">— Louis Pereira, Fondateur Aos Renov</p>
+      </div>
+      <div class="story-card reveal">
+        <ul>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> App créée avec Cursor</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Déployée sur Vercel</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Premiers clients signés</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Zéro formation de dev</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Zéro budget agence</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. Modules -->
+    <section class="modules">
+      <h2 class="reveal">Tout ce que j'aurais voulu<br>savoir <span class="amber">dès le départ.</span></h2>
+      <div class="modules-grid">
+        <div class="module-card reveal reveal-delay-1">
+          <div class="module-icon">🤖</div>
+          <h3>Cursor comme un pro</h3>
+          <p>Utilise l'IA pour coder sans être développeur. Prompts, workflows, astuces que 99% des gens ne connaissent pas.</p>
+        </div>
+        <div class="module-card reveal reveal-delay-2">
+          <div class="module-icon">🚀</div>
+          <h3>Lancer en production</h3>
+          <p>GitHub, Vercel, nom de domaine, SSL. Ton app en ligne en moins d'une journée.</p>
+        </div>
+        <div class="module-card reveal reveal-delay-3">
+          <div class="module-icon">🗄️</div>
+          <h3>Base de données & Auth</h3>
+          <p>Supabase pour stocker tes données. Authentification utilisateurs. Sans toucher à un seul serveur.</p>
+        </div>
+        <div class="module-card reveal reveal-delay-4">
+          <div class="module-icon">📧</div>
+          <h3>Emails & Notifications</h3>
+          <p>Resend pour les emails transactionnels. Tes utilisateurs reçoivent les bons emails au bon moment.</p>
+        </div>
+        <div class="module-card reveal reveal-delay-5">
+          <div class="module-icon">💳</div>
+          <h3>Paiements & Abonnements</h3>
+          <p>Stripe intégré à ton app. Tes clients paient directement. Tu encaisses automatiquement.</p>
+        </div>
+        <div class="module-card reveal reveal-delay-5">
+          <div class="module-icon">📣</div>
+          <h3>Marketing & Premiers Clients</h3>
+          <p>Trouver tes premiers clients sans budget pub. Cold calling, réseaux sociaux, positionnement. Ce qui marche vraiment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Pour qui -->
+    <section class="pour-qui">
+      <div class="pour-qui-inner reveal">
+        <div class="pour-qui-col green">
+          <h2 style="color: var(--green);">C'est pour toi si :</h2>
+          <ul>
+            <li>✓ Tu as une idée d'app ou de logiciel</li>
+            <li>✓ Tu veux créer sans dépendre d'un dev</li>
+            <li>✓ Tu es entrepreneur, freelance ou salarié qui veut se lancer</li>
+            <li>✓ Tu veux un revenu supplémentaire avec ton propre SaaS</li>
+            <li>✓ Tu es prêt à investir du temps et de la concentration</li>
+          </ul>
+        </div>
+        <div class="pour-qui-col red">
+          <h2 style="color: var(--red);">C'est pas pour toi si :</h2>
+          <ul>
+            <li>✗ Tu cherches un coaching passif (vidéos à regarder sur le canapé)</li>
+            <li>✗ Tu veux des résultats sans effort</li>
+            <li>✗ Tu n'as pas 5 à 10h par semaine à y consacrer</li>
+            <li>✗ Tu veux juste "voir ce que c'est"</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Timeline -->
+    <section class="timeline-wrap">
+      <h2 class="reveal">Un accompagnement. Pas juste un coaching.</h2>
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <span class="timeline-num">1</span>
+          <div class="timeline-card">
+            <h3>📞 Appel de découverte (30 min)</h3>
+            <p>On analyse ton idée ensemble. Je t'aide à la valider et à définir ce que tu dois construire en premier.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-num">2</span>
+          <div class="timeline-card">
+            <h3>🗺️ Roadmap personnalisée</h3>
+            <p>Je te crée un plan d'action sur mesure : les fonctionnalités à prioriser, le stack technique adapté à ton projet, les pièges à éviter.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-num">3</span>
+          <div class="timeline-card">
+            <h3>🛠️ Sessions de travail live</h3>
+            <p>On code ensemble via partage d'écran. Je t'explique chaque décision. Tu apprends en faisant, pas en regardant.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-num">4</span>
+          <div class="timeline-card">
+            <h3>🚀 Lancement & Premiers clients</h3>
+            <p>Je t'accompagne jusqu'au premier utilisateur payant. Stratégie marketing, pricing, cold outreach — tout est couvert.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section class="faq-wrap">
+      <h2 class="reveal">Les questions qu'on me pose toujours</h2>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false">
+            <span>Je ne sais vraiment pas coder, c'est faisable ?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a-wrap" style="height: 0;">
+            <div class="faq-a">
+              <p>C'est exactement pour ça que ce coaching existe. Je n'avais aucune base en développement quand j'ai commencé. Cursor fait 80% du travail — toi tu apportes l'idée et la logique métier.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false">
+            <span>Combien de temps ça prend pour avoir une app fonctionnelle ?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a-wrap" style="height: 0;">
+            <div class="faq-a">
+              <p>Ça dépend de la complexité de ton idée. Une app simple avec les fonctionnalités essentielles, c'est réalisable en quelques semaines à temps partiel. J'ai lancé Aos Renov en travaillant soir et week-end.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false">
+            <span>Quels outils j'aurais besoin d'acheter ?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a-wrap" style="height: 0;">
+            <div class="faq-a">
+              <p>Cursor Pro (20$/mois), un hébergement Vercel (gratuit au début), Supabase (gratuit au début). Le reste s'ajoute progressivement selon ton projet. Pas besoin d'investir lourd dès le départ.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false">
+            <span>C'est quoi le format de l'accompagnement ?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a-wrap" style="height: 0;">
+            <div class="faq-a">
+              <p>On travaille ensemble en direct via appel vidéo et partage d'écran. Pas de vidéos pré-enregistrées — un accompagnement personnalisé adapté à ton projet spécifique.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false">
+            <span>Est-ce que je peux vraiment trouver des clients avec une app créée avec l'IA ?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a-wrap" style="height: 0;">
+            <div class="faq-a">
+              <p>Ma propre app tourne en production avec de vrais clients. La technologie utilisée ne compte pas — ce qui compte c'est que ton produit résout un vrai problème. Et ça, je t'apprends comment le faire.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false">
+            <span>Combien ça coûte ?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a-wrap" style="height: 0;">
+            <div class="faq-a">
+              <p>On en parle lors de l'appel de découverte selon ton projet et tes objectifs. Réserve ton appel gratuit pour en discuter.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false">
+            <span>Combien de places y a-t-il ?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a-wrap" style="height: 0;">
+            <div class="faq-a">
+              <p>Je limite volontairement à 5 accompagnements par mois pour garantir une vraie qualité de suivi. Les places partent vite.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CTA final -->
+    <section class="cta-final">
+      <div class="reveal">
+        <span class="cta-final-badge">Nombre de places limité ce mois</span>
+        <h2>Prêt à construire<br>quelque chose de réel ?</h2>
+        <p class="cta-final-sub">Un appel. 30 minutes. On voit si c'est fait pour toi.</p>
+        <a href="https://wa.me/33769430343?text=Bonjour%20Louis%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20ton%20coaching%20pour%20cr%C3%A9er%20mon%20app%20sans%20coder.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="btn-cta">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Réserver mon appel sur WhatsApp — Gratuit
+        </a>
+        <p class="cta-final-trust">✓ Sans engagement &nbsp; ✓ Réponse sous 24h &nbsp; ✓ 100% personnalisé</p>
+      </div>
+    </section>
+
+    <!-- 10. Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          Louis Pereira
+          <span>Fondateur Aos Renov</span>
+        </div>
+        <div class="footer-center">
+          <a href="https://aosrenov.com" target="_blank" rel="noopener">Aos Renov →</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">Instagram →</a>
+          <a href="https://wa.me/33769430343" target="_blank" rel="noopener">Contact WhatsApp →</a>
+        </div>
+        <div class="footer-right">© 2026 — Fait avec Cursor et beaucoup de café ☕</div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
