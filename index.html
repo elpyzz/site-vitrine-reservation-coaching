@@ -251,18 +251,26 @@
     .stats {
       background: var(--navy);
       padding: 80px 24px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
     .stats-inner {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 0;
     }
     .stat-item {
       padding: 24px;
       text-align: center;
       border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .stat-item:last-child { border-right: none; }
     .stat-num {
@@ -270,13 +278,16 @@
       font-weight: 800;
       font-size: clamp(36px, 5vw, 72px);
       color: var(--amber);
-      line-height: 1;
+      line-height: 1.1;
       margin-bottom: 8px;
+      white-space: nowrap;
+      writing-mode: horizontal-tb;
     }
     .stat-label {
       font-weight: 300;
       font-size: 14px;
       color: var(--muted);
+      max-width: 100%;
     }
 
     /* ——— Mon histoire ——— */
@@ -343,6 +354,39 @@
       height: 22px;
       flex-shrink: 0;
       color: var(--green);
+    }
+
+    /* Encart légitimité Mon histoire */
+    .story-legitimacy {
+      grid-column: 1 / -1;
+      margin-top: 48px;
+    }
+    .story-legitimacy-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .story-legitimacy-card {
+      background: var(--amber-dim);
+      border: 1px solid var(--amber-border);
+      border-radius: 20px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .story-legitimacy-card .story-legitimacy-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: var(--amber);
+      font-size: clamp(22px, 2.5vw, 28px);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .story-legitimacy-card .story-legitimacy-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
     }
 
     /* ——— Modules ——— */
@@ -657,8 +701,10 @@
       margin-top: 4px;
     }
     .footer-center {
-      display: flex;
-      gap: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+      align-content: start;
     }
     .footer-center a {
       color: var(--muted);
@@ -695,6 +741,7 @@
       .stat-item:nth-last-child(-n+2) { border-bottom: none; }
       .story { grid-template-columns: 1fr; }
       .story .story-card { order: -1; }
+      .story-legitimacy-inner { grid-template-columns: 1fr; }
       .modules-grid { grid-template-columns: 1fr; }
       .pour-qui-inner { grid-template-columns: 1fr; }
       .timeline { padding-left: 70px; }
@@ -762,8 +809,8 @@
     <section class="stats">
       <div class="stats-inner reveal">
         <div class="stat-item">
-          <div class="stat-num">0€</div>
-          <div class="stat-label">investis en coaching</div>
+          <div class="stat-num">-100€</div>
+          <div class="stat-label">investis pour créer mon Logiciel</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">Quelques</div>
@@ -772,10 +819,6 @@
         <div class="stat-item">
           <div class="stat-num">1 app</div>
           <div class="stat-label">en prod réelle</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">en ligne sans serveur</div>
         </div>
       </div>
     </section>
@@ -798,6 +841,22 @@
           <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Zéro formation de dev</li>
           <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Zéro budget agence</li>
         </ul>
+      </div>
+      <div class="story-legitimacy reveal">
+        <div class="story-legitimacy-inner">
+          <div class="story-legitimacy-card">
+            <div class="story-legitimacy-num">+3 000€</div>
+            <div class="story-legitimacy-label">investis en formations</div>
+          </div>
+          <div class="story-legitimacy-card">
+            <div class="story-legitimacy-num">1 application</div>
+            <div class="story-legitimacy-label">en production</div>
+          </div>
+          <div class="story-legitimacy-card">
+            <div class="story-legitimacy-num">Utilisée</div>
+            <div class="story-legitimacy-label">par de vrais artisans en France</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1004,6 +1063,9 @@
           <span>Fondateur Aos Renov</span>
         </div>
         <div class="footer-center">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="confidentialite.html">Politique de confidentialité</a>
+          <a href="cgv.html">CGV</a>
           <a href="https://aosrenov.com" target="_blank" rel="noopener">Aos Renov →</a>
           <a href="https://instagram.com" target="_blank" rel="noopener">Instagram →</a>
           <a href="https://wa.me/33769430343" target="_blank" rel="noopener">Contact WhatsApp →</a>

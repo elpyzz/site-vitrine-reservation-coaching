@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditions générales de vente — Louis Pereira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #050810;
+      --navy: #080e1c;
+      --amber: #F5A623;
+      --amber-dim: rgba(245, 166, 35, 0.10);
+      --amber-border: rgba(245, 166, 35, 0.25);
+      --text: #F0F4FF;
+      --muted: #6B7FA3;
+      --border: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 20% 10%, rgba(245, 166, 35, 0.04) 0%, transparent 50%),
+                  radial-gradient(ellipse 60% 40% at 80% 90%, rgba(37, 99, 235, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wrap { position: relative; z-index: 1; }
+
+    .urgency-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--amber);
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      padding: 10px 16px;
+      z-index: 100;
+    }
+    .urgency-bar a { color: var(--black); text-decoration: none; }
+    .nav-wrap { padding-top: 44px; }
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(5, 8, 16, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      background: var(--amber);
+      color: var(--black);
+      padding: 10px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .nav-cta:hover { opacity: 0.95; }
+
+    .legal-back {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 40px 0;
+    }
+    .legal-back a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legal-back a:hover { color: var(--amber); }
+
+    .legal-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 40px 80px;
+    }
+    .legal-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .legal-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .legal-section { margin-bottom: 40px; }
+    .legal-section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+    .legal-section p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(240, 244, 255, 0.85);
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    .legal-section ul {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(240, 244, 255, 0.85);
+      line-height: 1.8;
+      margin: 8px 0 8px 20px;
+    }
+    .legal-contact-box {
+      background: rgba(245, 166, 35, 0.06);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .footer {
+      background: #030508;
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-left {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .footer-left span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .footer-center {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+      align-content: start;
+    }
+    .footer-center a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .footer-center a:hover { color: var(--amber); }
+    .footer-right { font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .legal-page, .legal-back { padding-left: 20px; padding-right: 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="https://wa.me/33769430343?text=Bonjour%20Louis%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20ton%20coaching%20pour%20cr%C3%A9er%20mon%20app%20sans%20coder.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="urgency-bar">
+      ⚡ Places limitées — 5 accompagnements disponibles ce mois-ci · Réserver maintenant →
+    </a>
+
+    <div class="nav-wrap">
+      <nav class="nav">
+        <a href="index.html" class="nav-logo">Louis Pereira</a>
+        <a href="https://wa.me/33769430343?text=Bonjour%20Louis%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20ton%20coaching%20pour%20cr%C3%A9er%20mon%20app%20sans%20coder.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="nav-cta">Réserver mon appel →</a>
+      </nav>
+    </div>
+
+    <div class="legal-back">
+      <a href="index.html">← Retour au site</a>
+    </div>
+
+    <main class="legal-page">
+      <h1 class="legal-title">Conditions générales de vente</h1>
+      <p class="legal-date">Dernière mise à jour : mars 2026</p>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">1. Identification du prestataire</h2>
+        <p>Louis Pereira, auto-entrepreneur</p>
+        <p>SIRET : 15487965844452</p>
+        <p>Zone Artisanale Avenue de la Gare, 33230 Guitre</p>
+        <div class="legal-contact-box">
+          louispereira2005@gmail.com<br>
+          +33 7 69 43 03 43
+        </div>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">2. Services proposés</h2>
+        <p>Louis Pereira propose des services d'accompagnement et de formation personnalisée à la création d'applications web et logiciels SaaS à l'aide d'outils d'intelligence artificielle, notamment Cursor, et des technologies associées (GitHub, Vercel, Supabase, Stripe, Resend, etc.).</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">3. Commande et devis</h2>
+        <p>Toute prestation fait l'objet d'un devis personnalisé établi suite à un appel de découverte gratuit. La commande est confirmée à réception du devis signé et du règlement de l'acompte convenu.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">4. Tarifs</h2>
+        <p>Les tarifs sont communiqués lors de l'appel de découverte et formalisés dans le devis personnalisé. Les prix sont indiqués en euros HT. En tant qu'auto-entrepreneur bénéficiant de la franchise en base de TVA (article 293 B du CGI), la TVA n'est pas applicable.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">5. Modalités de paiement</h2>
+        <p>Le paiement s'effectue selon les modalités définies dans le devis : virement bancaire, ou tout autre moyen convenu entre les parties. Un acompte peut être demandé à la signature du devis.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">6. Rétractation</h2>
+        <p>Conformément à l'article L221-18 du Code de la consommation, vous disposez d'un délai de 14 jours à compter de la signature du devis pour exercer votre droit de rétractation, sans avoir à justifier de motifs ni à payer de pénalités. Pour exercer ce droit, contactez-nous par email :</p>
+        <div class="legal-contact-box">louispereira2005@gmail.com</div>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">7. Obligations du prestataire</h2>
+        <p>Louis Pereira s'engage à :</p>
+        <ul>
+          <li>Fournir les services décrits dans le devis avec sérieux et professionnalisme</li>
+          <li>Respecter les délais convenus</li>
+          <li>Maintenir la confidentialité des informations partagées</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">8. Obligations du client</h2>
+        <p>Le client s'engage à :</p>
+        <ul>
+          <li>Fournir les informations nécessaires à la bonne exécution du service</li>
+          <li>Respecter les rendez-vous et sessions planifiés</li>
+          <li>Régler les sommes dues aux échéances convenues</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">9. Résultats et responsabilité</h2>
+        <p>Les services proposés constituent une obligation de moyens et non de résultats. Louis Pereira ne saurait être tenu responsable des résultats commerciaux obtenus par le client suite à l'accompagnement. La réussite dépend en grande partie de l'implication personnelle du client.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">10. Propriété intellectuelle</h2>
+        <p>Les méthodes, contenus, supports et ressources partagés lors des sessions sont la propriété intellectuelle de Louis Pereira. Ils sont fournis à titre personnel et ne peuvent être reproduits, partagés ou revendus sans autorisation expresse.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">11. Confidentialité</h2>
+        <p>Chaque partie s'engage à garder confidentielles les informations échangées dans le cadre de la prestation.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">12. Litiges</h2>
+        <p>En cas de litige, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire. À défaut d'accord amiable, tout litige sera soumis aux tribunaux compétents du ressort de Bordeaux.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 class="legal-section-title">13. Droit applicable</h2>
+        <p>Les présentes CGV sont soumises au droit français.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          Louis Pereira
+          <span>Fondateur Aos Renov</span>
+        </div>
+        <div class="footer-center">
+          <a href="index.html">Accueil</a>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="confidentialite.html">Politique de confidentialité</a>
+          <a href="cgv.html">CGV</a>
+          <a href="https://aosrenov.com" target="_blank" rel="noopener">Aos Renov →</a>
+          <a href="https://wa.me/33769430343" target="_blank" rel="noopener">Contact WhatsApp →</a>
+        </div>
+        <div class="footer-right">© 2026 — Fait avec Cursor et beaucoup de café ☕</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
